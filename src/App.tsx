@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import FullForm from './components/FullForm';
+import Table from './components/Table';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <Router>
+      <Routes>
+        <Route path="/users" Component={Table }/>
+        <Route path="/user/add" Component={FullForm} />
+        <Route path="/user/:userId/edit" Component={FullForm} />
+        <Route
+          path="/"
+          element={<Navigate to="/user/add" replace />} // Redirect to "/user/add"
+        />
+      </Routes>
+  </Router>
+    
   );
 }
 
